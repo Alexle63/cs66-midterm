@@ -18,288 +18,82 @@ X, diabetes_y = datasets.load_diabetes(return_X_y=True)
 names = datasets.load_diabetes().feature_names
 
 
-"""              LINEAR REGRESSION START                """
-print("\n\n LINEAR REGRESSION")
-plt.figure(1)
-A = [['Metric', 'Coefficients', 'Mean Squared Error', 'Coeff. of Det.'],
-     [],
-     [],
-     [],
-     [],
-     [],
-     [],
-     [],
-     [],
-     [],
-     []]
-# Make a linear regression for every feature
-for i in range(0,10):
-    # Use only one feature
-    diabetes_X = X[:, np.newaxis, i]
-
-    # Split the data into training/testing sets
-    diabetes_X_train = diabetes_X[:-20]
-    diabetes_X_test = diabetes_X[-20:]
-
-    # Split the targets into training/testing sets
-    diabetes_y_train = diabetes_y[:-20]
-    diabetes_y_test = diabetes_y[-20:]
-
-    # Create linear regression object
-    regr = linear_model.LinearRegression()
-
-    # Train the model using the training sets
-    regr.fit(diabetes_X_train, diabetes_y_train)
-
-    # Make predictions using the testing set
-    diabetes_y_pred = regr.predict(diabetes_X_test)
-
-    # Plot outputs
-
-    # print("Metric: %s" % (names[i]))
-    # # The coefficients
-    # print("Coefficients: ", regr.coef_)
-    # # The mean squared error
-    # print("Mean squared error: %.2f" % mean_squared_error(diabetes_y_test, diabetes_y_pred))
-    # # The coefficient of determination: 1 is perfect prediction
-    # print("Coefficient of determination: %.2f\n" % r2_score(diabetes_y_test, diabetes_y_pred))
-
-    A[i+1].append(str(names[i]))
-    A[i+1].append(str(round(regr.coef_[0],2)))
-    A[i+1].append(str(round(mean_squared_error(diabetes_y_test, diabetes_y_pred),2)))
-    A[i+1].append(str(round(r2_score(diabetes_y_test, diabetes_y_pred),2)))
-
-    plt.subplot(2,5,i+1)
-    plt.title("Metric: %s" % (names[i]))
-    plt.scatter(diabetes_X_test, diabetes_y_test, color="black")
-    plt.plot(diabetes_X_test, diabetes_y_pred, color="blue", linewidth=3)
-
-    plt.xticks(())
-    plt.yticks(())
-
-print('\n'.join([''.join(['{:^20}'.format(item) for item in row]) 
-    for row in A]))
-
-plt.suptitle("Linear Regression", fontsize=14)
-"""              LINEAR REGRESSION END                  """
-
-
-
-
-
-
-
-
-
-"""           KERNEL RIDGE REGRESSION START             """
-print("\n\n KERNEL RIDGE REGRESSION")
-plt.figure(2)
-A = [['Metric', 'Coefficients', 'Mean Squared Error', 'Coeff. of Det.'],
-     [],
-     [],
-     [],
-     [],
-     [],
-     [],
-     [],
-     [],
-     [],
-     []]
-# Make a regression for every feature
-for i in range(0,10):
-    # Use only one feature
-    diabetes_X = X[:, np.newaxis, i]
-
-    # Split the data into training/testing sets
-    diabetes_X_train = diabetes_X[:-20]
-    diabetes_X_test = diabetes_X[-20:]
-
-    # Split the targets into training/testing sets
-    diabetes_y_train = diabetes_y[:-20]
-    diabetes_y_test = diabetes_y[-20:]
-
-    # Create linear regression object
-    regr = linear_model.RidgeCV()
-
-    # Train the model using the training sets
-    regr.fit(diabetes_X_train, diabetes_y_train)
-
-    # Make predictions using the testing set
-    diabetes_y_pred = regr.predict(diabetes_X_test)
-
-    # Plot outputs
-
-    # print("Metric: %s" % (names[i]))
-    # # The coefficients
-    # print("Coefficients: ", regr.coef_)
-    # # The mean squared error
-    # print("Mean squared error: %.2f" % mean_squared_error(diabetes_y_test, diabetes_y_pred))
-    # # The coefficient of determination: 1 is perfect prediction
-    # print("Coefficient of determination: %.2f\n" % r2_score(diabetes_y_test, diabetes_y_pred))
-
-    A[i+1].append(str(names[i]))
-    A[i+1].append(str(round(regr.coef_[0],2)))
-    A[i+1].append(str(round(mean_squared_error(diabetes_y_test, diabetes_y_pred),2)))
-    A[i+1].append(str(round(r2_score(diabetes_y_test, diabetes_y_pred),2)))
-
-    plt.subplot(2,5,i+1)
-    plt.title("Metric: %s" % (names[i]))
-    plt.scatter(diabetes_X_test, diabetes_y_test, color="black")
-    plt.plot(diabetes_X_test, diabetes_y_pred, color="blue", linewidth=3)
-
-    plt.xticks(())
-    plt.yticks(())
-
-print('\n'.join([''.join(['{:^20}'.format(item) for item in row]) 
-    for row in A]))
-
-plt.suptitle("Kernel Ridge Regression", fontsize=14)
-"""            KERNEL RIDGE REGRESSION END              """
-
-
-
-
-
-
-
-"""             SGD REGRESSOR START               """
-print("\n\n SGD REGRESSOR")
-plt.figure(3)
-A = [['Metric', 'Coefficients', 'Mean Squared Error', 'Coeff. of Det.'],
-     [],
-     [],
-     [],
-     [],
-     [],
-     [],
-     [],
-     [],
-     [],
-     []]
-# Make a regression for every feature
-for i in range(0,10):
-    # Use only one feature
-    diabetes_X = X[:, np.newaxis, i]
-
-    # Split the data into training/testing sets
-    diabetes_X_train = diabetes_X[:-20]
-    diabetes_X_test = diabetes_X[-20:]
-
-    # Split the targets into training/testing sets
-    diabetes_y_train = diabetes_y[:-20]
-    diabetes_y_test = diabetes_y[-20:]
-
-    # Create linear regression object
-    regr = linear_model.SGDRegressor(max_iter=100000)
-
-    # Train the model using the training sets
-    regr.fit(diabetes_X_train, diabetes_y_train)
-
-    # Make predictions using the testing set
-    diabetes_y_pred = regr.predict(diabetes_X_test)
-
-    # Plot outputs
-
-    # print("Metric: %s" % (names[i]))
-    # # The coefficients
-    # print("Coefficients: ", regr.coef_)
-    # # The mean squared error
-    # print("Mean squared error: %.2f" % mean_squared_error(diabetes_y_test, diabetes_y_pred))
-    # # The coefficient of determination: 1 is perfect prediction
-    # print("Coefficient of determination: %.2f\n" % r2_score(diabetes_y_test, diabetes_y_pred))
-
-    A[i+1].append(str(names[i]))
-    A[i+1].append(str(round(regr.coef_[0],2)))
-    A[i+1].append(str(round(mean_squared_error(diabetes_y_test, diabetes_y_pred),2)))
-    A[i+1].append(str(round(r2_score(diabetes_y_test, diabetes_y_pred),2)))
-
-    plt.subplot(2,5,i+1)
-    plt.title("Metric: %s" % (names[i]))
-    plt.scatter(diabetes_X_test, diabetes_y_test, color="black")
-    plt.plot(diabetes_X_test, diabetes_y_pred, color="blue", linewidth=3)
-
-    plt.xticks(())
-    plt.yticks(())
-
-print('\n'.join([''.join(['{:^20}'.format(item) for item in row]) 
-    for row in A]))
-
-plt.suptitle("SGD Regression", fontsize=14)
-"""              SGD REGRESSOR END                """
-
-
-
-
-
-
-
-"""             LASSO REGRESSOR START               """
-print("\n\n LASSO REGRESSOR")
-plt.figure(4)
-A = [['Metric', 'Coefficients', 'Mean Squared Error', 'Coeff. of Det.'],
-     [],
-     [],
-     [],
-     [],
-     [],
-     [],
-     [],
-     [],
-     [],
-     []]
-# Make a regression for every feature
-for i in range(0,10):
-    # Use only one feature
-    diabetes_X = X[:, np.newaxis, i]
-
-    # Split the data into training/testing sets
-    diabetes_X_train = diabetes_X[:-20]
-    diabetes_X_test = diabetes_X[-20:]
-
-    # Split the targets into training/testing sets
-    diabetes_y_train = diabetes_y[:-20]
-    diabetes_y_test = diabetes_y[-20:]
-
-    # Create linear regression object
-    regr = linear_model.LassoCV()
-
-    # Train the model using the training sets
-    regr.fit(diabetes_X_train, diabetes_y_train)
-
-    # Make predictions using the testing set
-    diabetes_y_pred = regr.predict(diabetes_X_test)
-
-    # Plot outputs
-
-    # print("Metric: %s" % (names[i]))
-    # # The coefficients
-    # print("Coefficients: ", regr.coef_)
-    # # The mean squared error
-    # print("Mean squared error: %.2f" % mean_squared_error(diabetes_y_test, diabetes_y_pred))
-    # # The coefficient of determination: 1 is perfect prediction
-    # print("Coefficient of determination: %.2f\n" % r2_score(diabetes_y_test, diabetes_y_pred))
-
-    A[i+1].append(str(names[i]))
-    A[i+1].append(str(round(regr.coef_[0],2)))
-    A[i+1].append(str(round(mean_squared_error(diabetes_y_test, diabetes_y_pred),2)))
-    A[i+1].append(str(round(r2_score(diabetes_y_test, diabetes_y_pred),2)))
-
-    plt.subplot(2,5,i+1)
-    plt.title("Metric: %s" % (names[i]))
-    plt.scatter(diabetes_X_test, diabetes_y_test, color="black")
-    plt.plot(diabetes_X_test, diabetes_y_pred, color="blue", linewidth=3)
-
-    plt.xticks(())
-    plt.yticks(())
-
-print('\n'.join([''.join(['{:^20}'.format(item) for item in row]) 
-    for row in A]))
-
-plt.suptitle("LASSO Regression", fontsize=14)
-"""              LASSO REGRESSOR END                """
-
-
-
-print("\n\nMean squared error: Lower is better")
+# title:  Title of the used regression
+# method: The function call of the regression
+# num:    The number of the model used
+def runModel(title, method, num):
+    print("\n\n " + title.upper())
+    plt.figure(num)
+    A = [['Metric', 'Coefficients', 'Mean Squared Error', 'Coeff. of Det.'],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        ['Averages']]
+        
+    for i in range(0,10):
+        # Use only one feature
+        diabetes_X = X[:, np.newaxis, i]
+
+        # Split the data into training/testing sets
+        diabetes_X_train = diabetes_X[:-20]
+        diabetes_X_test = diabetes_X[-20:]
+
+        # Split the targets into training/testing sets
+        diabetes_y_train = diabetes_y[:-20]
+        diabetes_y_test = diabetes_y[-20:]
+
+        # Create linear regression object
+        regr = method
+
+        # Train the model using the training sets
+        regr.fit(diabetes_X_train, diabetes_y_train)
+
+        # Make predictions using the testing set
+        diabetes_y_pred = regr.predict(diabetes_X_test)
+
+        # Plot outputs
+
+        A[i+1].append(str(names[i]))
+        A[i+1].append(str(round(regr.coef_[0],2)))
+        A[i+1].append(str(round(mean_squared_error(diabetes_y_test, diabetes_y_pred),2)))
+        A[i+1].append(str(round(r2_score(diabetes_y_test, diabetes_y_pred),2)))
+
+        plt.subplot(2,5,i+1)
+        plt.title("Metric: %s" % (names[i]))
+        plt.scatter(diabetes_X_test, diabetes_y_test, color="black")
+        plt.plot(diabetes_X_test, diabetes_y_pred, color="blue", linewidth=3)
+
+        plt.xticks(())
+        plt.yticks(())
+    mean_co = 0
+    mean_squared = 0
+    mean_co_det = 0
+    for j in range(0,10):
+        mean_co += float(A[j+1][1])
+        mean_squared += float(A[j+1][2])
+        mean_co_det += float(A[j+1][3])
+    A[-1].append(round(mean_co/10, 2))
+    A[-1].append(round(mean_squared/10, 2))
+    A[-1].append(round(mean_co_det/10, 2))
+    print('\n'.join([''.join(['{:^20}'.format(item) for item in row]) 
+        for row in A]))
+
+    plt.suptitle(title, fontsize=14)
+
+
+runModel("Linear Regression", linear_model.LinearRegression(), 1)
+runModel("Kernel Ridge Regression", linear_model.RidgeCV(), 2)
+runModel("SGD Regressor", linear_model.SGDRegressor(max_iter=100000), 3)
+runModel("LASSO Regression", linear_model.LassoCV(), 4)
+
+print("\n\nCoefficients: Higher is better")
+print("Mean squared error: Lower is better")
 print("Coefficient of determination: Higher is better\n")
 plt.show()
