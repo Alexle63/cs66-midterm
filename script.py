@@ -3,6 +3,7 @@ import sys
 import numpy as np
 from sklearn import datasets, linear_model, ensemble
 from sklearn.metrics import mean_squared_error, r2_score
+from sqlalchemy import false
 
 # Load the diabetes dataset
 X, diabetes_y = datasets.load_diabetes(return_X_y=True)
@@ -31,7 +32,7 @@ def Sort(sub_li,n):
 
 # title:  Title of the used regression
 # method: The function call of the regression
-# num:    The number of the model used
+# num:    The number of the model used (make it unique)
 def runModel(title, method, num):
     print("\n\n " + title.upper())
     plt.figure(num)
@@ -100,9 +101,10 @@ def runModel(title, method, num):
     plt.suptitle(title, fontsize=14)
 
 # Metric to measure by
-if(len(sys.argv) != 2):
-    print("Syntax: \n python3 script.py <n> \
-          \n   - <n>: Number of metric to sort by [1,2,3]")
+if(len(sys.argv) < 3):
+    print("\nSyntax:    python3 script.py <n> <true/false>\
+          \n   - <n>:          Number of metric to sort by [1,2,3] \
+          \n   - <true\\false>: 'true' to show plots, 'false' to not show\n")
     exit(1)
 else:
     try:
@@ -112,10 +114,12 @@ else:
         exit(1)
 
 # Run the following models on the dataset and print results
-runModel("Linear Regression", linear_model.LinearRegression(), 1)
-runModel("Kernel Ridge Regression", linear_model.RidgeCV(), 2)
-runModel("SGD Regressor", linear_model.SGDRegressor(max_iter=100000), 3)
-runModel("LASSO Regression", linear_model.LassoCV(), 4)
+# runModel("Linear Regression", linear_model.LinearRegression(), 1)
+# runModel("Kernel Ridge CV Regression", linear_model.RidgeCV(), 2)
+# runModel("SGD Regressor", linear_model.SGDRegressor(max_iter=100000), 3)
+# runModel("LASSO CV Regression", linear_model.LassoCV(), 4)
+# runModel("Bayesian Ridge Regression", linear_model.BayesianRidge(), 5)
+# runModel("Elastic Net CV Regression", linear_model.ElasticNetCV(), 6)
 
 met = ['Coefficients', 'Mean Squared Error', 'Coefficients of detemination']
 
@@ -124,4 +128,6 @@ print("\n\nCoefficients: Higher is better")
 print("Mean squared error: Lower is better")
 print("Coefficient of determination: Higher is better")
 print(('\033[1m' + "Sorting by %s\n" + '\033[0m') % met[n-1])
-plt.show()
+
+if(sys.argv[2] == "true"):
+    plt.show()
