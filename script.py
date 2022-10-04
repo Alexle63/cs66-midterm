@@ -1,14 +1,5 @@
-# https://scikit-learn.org/stable/auto_examples/linear_model/plot_ols.html#sphx-glr-auto-examples-linear-model-plot-ols-py
-# COMPLETE
-
-# https://scikit-learn.org/stable/modules/kernel_ridge.html
-
-# https://scikit-learn.org/stable/auto_examples/ensemble/plot_gradient_boosting_regression.html#sphx-glr-auto-examples-ensemble-plot-gradient-boosting-regression-py
-
-# https://scikit-learn.org/stable/auto_examples/linear_model/plot_lasso_coordinate_descent_path.html#sphx-glr-auto-examples-linear-model-plot-lasso-coordinate-descent-path-py
-
-
 import matplotlib.pyplot as plt
+import sys
 import numpy as np
 from sklearn import datasets, linear_model, ensemble
 from sklearn.metrics import mean_squared_error, r2_score
@@ -17,6 +8,26 @@ from sklearn.metrics import mean_squared_error, r2_score
 X, diabetes_y = datasets.load_diabetes(return_X_y=True)
 names = datasets.load_diabetes().feature_names
 
+# Sorts list of sublists based on the n'th element
+# Code provided by GeeksForGeeks, found at
+# https://www.geeksforgeeks.org/python-sort-list-according-second-element-sublist/
+def Sort(sub_li,n):
+    l = len(sub_li)
+    for i in range(0, l):
+        # skip first sublist and last sublist
+        if(n == 2):
+            for j in range(1, l-i-2):
+                if (float(sub_li[j][n]) > float(sub_li[j + 1][n])):
+                    tempo = sub_li[j]
+                    sub_li[j]= sub_li[j + 1]
+                    sub_li[j + 1]= tempo
+        else:
+            for j in range(1, l-i-2):
+                if (float(sub_li[j][n]) < float(sub_li[j + 1][n])):
+                    tempo = sub_li[j]
+                    sub_li[j]= sub_li[j + 1]
+                    sub_li[j + 1]= tempo
+    return sub_li
 
 # title:  Title of the used regression
 # method: The function call of the regression
@@ -82,18 +93,35 @@ def runModel(title, method, num):
     A[-1].append(round(mean_co/10, 2))
     A[-1].append(round(mean_squared/10, 2))
     A[-1].append(round(mean_co_det/10, 2))
+    A = Sort(A, n)
     print('\n'.join([''.join(['{:^20}'.format(item) for item in row]) 
         for row in A]))
 
     plt.suptitle(title, fontsize=14)
 
+# Metric to measure by
+if(len(sys.argv) != 2):
+    print("Syntax: \n python3 script.py <n> \
+          \n   - <n>: Number of metric to sort by [1,2,3]")
+    exit(1)
+else:
+    try:
+        n = int(sys.argv[1])
+    except:
+        print("<n> must be an integer.")
+        exit(1)
 
+# Run the following models on the dataset and print results
 runModel("Linear Regression", linear_model.LinearRegression(), 1)
 runModel("Kernel Ridge Regression", linear_model.RidgeCV(), 2)
 runModel("SGD Regressor", linear_model.SGDRegressor(max_iter=100000), 3)
 runModel("LASSO Regression", linear_model.LassoCV(), 4)
 
+met = ['Coefficients', 'Mean Squared Error', 'Coefficients of detemination']
+
+# Print some messages and show the plotted graphs
 print("\n\nCoefficients: Higher is better")
 print("Mean squared error: Lower is better")
-print("Coefficient of determination: Higher is better\n")
+print("Coefficient of determination: Higher is better")
+print(('\033[1m' + "Sorting by %s\n" + '\033[0m') % met[n-1])
 plt.show()
