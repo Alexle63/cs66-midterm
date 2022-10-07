@@ -114,10 +114,10 @@ else:
         exit(1)
 
 # Run the following models on the dataset and print results
-# runModel("Linear Regression", linear_model.LinearRegression(), 1)
-# runModel("Kernel Ridge CV Regression", linear_model.RidgeCV(), 2)
-# runModel("SGD Regressor", linear_model.SGDRegressor(max_iter=100000), 3)
-# runModel("LASSO CV Regression", linear_model.LassoCV(), 4)
+runModel("Linear Regression", linear_model.LinearRegression(), 1)
+runModel("Kernel Ridge CV Regression", linear_model.RidgeCV(), 2)
+runModel("SGD Regressor", linear_model.SGDRegressor(max_iter=100000), 3)
+runModel("LASSO CV Regression", linear_model.LassoCV(), 4)
 # runModel("Bayesian Ridge Regression", linear_model.BayesianRidge(), 5)
 # runModel("Elastic Net CV Regression", linear_model.ElasticNetCV(), 6)
 
