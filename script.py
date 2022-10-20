@@ -6,6 +6,16 @@ from sklearn import datasets, linear_model, ensemble
 from sklearn.metrics import mean_squared_error, r2_score
 from sqlalchemy import false
 
+# IMPROVEMENTS
+# averages would not be the best metrics
+#   - explain in paper why the averages was an appropriate metric?
+# maybe runtime and comparable results could be used instead
+# Figures could be added to paper
+# Nothing really innovative, contributes not really nothing new
+#   - could add a new algorithm? run on a new dataset?
+# Run ensemble methods? 
+
+
 # Load the diabetes dataset
 X, diabetes_y = datasets.load_diabetes(return_X_y=True)
 names = datasets.load_diabetes().feature_names
