@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import sys
+import time
 import numpy as np
 from sklearn import datasets, linear_model, ensemble
 from sklearn.metrics import mean_squared_error, r2_score
@@ -65,10 +66,13 @@ def runModel(title, method, num):
         regr = method
 
         # Train the model using the training sets
+        start = time.time()
         regr.fit(diabetes_X_train, diabetes_y_train)
 
         # Make predictions using the testing set
         diabetes_y_pred = regr.predict(diabetes_X_test)
+        end = time.time()
+        
 
         # Plot outputs
 
@@ -97,6 +101,7 @@ def runModel(title, method, num):
     A = Sort(A, n)
     print('\n'.join([''.join(['{:^20}'.format(item) for item in row]) 
         for row in A]))
+    print("Runtime: " + str(round((end - start)*1000,5)) + " ms")
 
     plt.suptitle(title, fontsize=14)
 
