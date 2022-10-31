@@ -1,0 +1,50 @@
+New Title: Analysis of Classical, Ensemble, and Deep Learning Models on the EEGEyeNet Dataset
+	   (Which model is the best at analyzing the EEGEyeNet Dataset?)
+
+Alt. Title: Analysis of Results and Runtimes of Classical, Ensemble, and Deep Learning Models on the EEGEyeNet Dataset
+	     (Is the 0.1% increase in accuracy/precision really worth an extra 10 minutes of runtime?)
+	     (Accuracy: Are the guesses close to the actual answer?)
+	     (Precision: Are the guesses confident and close to one another? (small deviation, guesses very close and clustered))
+
+Alt. Title: Polynomial Linear Regression on the EEGEyeNet Dataset
+	    (What is the "best" power of polynomial linear regression to model?)
+	    (At what point does the increase of power no longer add any significant change in results
+	     and does this drastically affect runtime?)
+	    (Potential graph: "Elbow method" for runtime x accuracy?)
+
+
+Structure:
+Introduction
+   - Background
+   - Motivation
+      - GRAPH (Graph of SOMETHING)
+   - Research Question
+      - GRAPH (Image of CNN and a paragraph on how it works?)
+   - Dataset and Methods (THESE ARE PROPOSED, DON'T ACTUALLY IMPLEMENT ANY CODE)
+Related Work
+   - Prior Work (1 paper)
+   - State-of-the-art (1 paper)
+   - STATE OF THE ART GRAPH
+References
+
+
+
+Steps:
+1) Cut out everything except introduction and literature review/related work/state-of-the-art articles
+   - Mention VERY CLEARLY that the dataset being used is the EEGEyeNet Dataset, WHICH IS FOUND AT CITATION/LINK <INSERT CITATION>.
+
+2) Add more methods that was not included in the paper
+   - Polynomial Regression (Linear is 1, polynomial is 2+, try powers 2-10) (STRONG CONTENDER, WAS NOT USED IN ANALYSIS OF EEGEyeNet PAPER)
+   - Nearest Neighbors (Used)
+   - SVM (STRONG CONTENDER; EEGEyeNet paper only used SVC, which is linear. SVM is non-linear (polynomic))
+   - LDA (STRONG CONTENDER)
+   - Ensemble Methods 
+   - (Convolutional) Neural Networks
+REMINDER: YOU DON'T HAVE TO CODE THESE, JUST MENTION THAT YOU PLAN TO USE THESE IN THE PAPER,
+          WHAT THEY DO AS AN ALGORITHM (FOR SOME OF THE MORE COMPLEX ONES LIKE CNN), AND 
+          WHY YOU WANT TO USE THEM
+REMINDER: MENTION THAT THE RUNTIME OF EACH ALGORITHM WILL BE MEASURED AND BE CONSIDERED IN THE ANALYSIS
+
+3) Proper Citations
+   - Cite using Latex's \cite function
+   - Cite the EEGEyeNet Dataset clearly
