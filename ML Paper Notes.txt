@@ -5,15 +5,7 @@ Alt. Title: Analysis of Results and Runtimes of Classical, Ensemble, and Deep Le
 	     (Is the 0.1% increase in accuracy/precision really worth an extra 10 minutes of runtime?)
 	     (Accuracy: Are the guesses close to the actual answer?)
 	     (Precision: Are the guesses confident and close to one another? (small deviation, guesses very close and clustered))
-
-Alt. Title: Runtimes of Polynomial Linear Regression on the EEGEyeNet Dataset
-	    (What is the "best" power of polynomial linear regression to model?)
-	    (At what point does the increase of power no longer add any significant change in results
-	     and does this drastically affect runtime?)
-	    (Potential graph: "Elbow method" for runtime x accuracy?)
-	    (PROBABLY YOUR BEST BET IN TERMS OF INNOVATIVE RESEARCH)
-	    (IF CHOSEN, MAKE SURE TO RUN USING CSLAB MACHINES AND BE VERY CLEAR ABOUT THE HARDWARE SPECS)
-	    (***Already well-studied under the umbrella of dimension reduction on most datasets, try on EEGEyeNet***)
+	     (Compare the different SVM and KNN Variations found at http://yann.lecun.org/exdb/mnist/)
 
 
 Structure:
@@ -38,14 +30,10 @@ Steps:
 
 2) Add more methods that was not included in the paper
    - Polynomial Regression (Linear is 1, polynomial is 2+, try powers 2-10) (STRONG CONTENDER, WAS NOT USED IN ANALYSIS OF EEGEyeNet PAPER)
-   - SVM (STRONG CONTENDER; EEGEyeNet paper only used SVC, which is linear. SVM is non-linear (polynomic))
-   - LDA (STRONG CONTENDER)
-   - Ensemble Methods (Probably not a good idea; EEGEyeNet paper covers most of the common ones; maybe exclude from paper?)
-   - (Convolutional) Neural Networks (!!! Used !!!)
+   - SVM and KNN Variations found at http://yann.lecun.org/exdb/mnist/
 REMINDER: YOU DON'T HAVE TO CODE THESE, JUST MENTION THAT YOU PLAN TO USE THESE IN THE PAPER,
-          WHAT THEY DO AS AN ALGORITHM (FOR SOME OF THE MORE COMPLEX ONES LIKE CNN), AND 
-          WHY YOU WANT TO USE THEM
-REMINDER: MENTION THAT THE RUNTIME OF EACH ALGORITHM WILL BE MEASURED AND BE CONSIDERED IN THE ANALYSIS
+          WHAT THEY DO AS AN ALGORITHM, AND WHY YOU WANT TO USE THEM
+REMINDER: MENTION THAT THE RUNTIME OF EACH ALGORITHM WILL BE MEASURED AND BE CONSIDERED IN THE ANALYSIS (Maybe Accuracy/runtime?)
 
 3) Proper Citations
    - Cite using Latex's \cite function
