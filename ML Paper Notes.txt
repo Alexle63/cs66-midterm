@@ -13,6 +13,7 @@ Alt. Title: Runtimes of Polynomial Linear Regression on the EEGEyeNet Dataset
 	    (Potential graph: "Elbow method" for runtime x accuracy?)
 	    (PROBABLY YOUR BEST BET IN TERMS OF INNOVATIVE RESEARCH)
 	    (IF CHOSEN, MAKE SURE TO RUN USING CSLAB MACHINES AND BE VERY CLEAR ABOUT THE HARDWARE SPECS)
+	    (***Already well-studied under the umbrella of dimension reduction on most datasets, try on EEGEyeNet***)
 
 
 Structure:
